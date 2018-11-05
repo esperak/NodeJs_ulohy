@@ -1,48 +1,50 @@
-var express = require('express'),
-    app = express(),
-    port = 27017,
-    mongoose = require('mongoose'),
-    Task = require('./api/models/todoListModel'),
-    cors = require('cors');
-    bodyParser = require('body-parser');
 
-//mongoose instance connection url connection
-mongoose.Promise = global.Promise;
-//connect directly to mongoose
-mongoose.connect('mongodb://localhost:27017/resttodolistdb', { useNewUrlParser: true }).then(
-    (res) => {
-        console.log("Successfully connected to the database.")
-    }
-    ).catch(() => {
-    console.log("Conntection to database failed.");
-});
+// Import
+let express = require('express');
+let bodyParser = require('body-parser');
+let mongoose = require('mongoose');
+let Task = require('./api/models/todoListModel');
+let routes = require('./api/routes/todoListRoute');
+let cors = require('cors');
+
+// Initialize the app
+let app = express();
+
+// Configure bodyparser to handle post requests
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.use(cors());
 app.use(bodyParser.json());
-
-// parse incoming requests
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-var routes = require('./api/routes/todoListRoute'); //importing route
-app.use(routes);
-
-console.log(routes)
- //register the route file
-
- app.get('/', (req, res) => {
-    res.send('hey').status(200);
- });
+//app.use(bodyParser.urlencoded({ extended: false }));
 
 
- //middleware added to check if user enters not found route 
- app.use(function(req, res) {
+
+//connect directly to mongoose
+mongoose.connect('mongodb://localhost:27017/resttodolistdb');
+var db = mongoose.connection;
+
+
+
+var port = process.env.PORT || 8080;
+
+
+// Send message for default URL
+app.get('/', (req, res) => res.send('Hey!'));
+
+// Use Api routes in the App
+app.use(routes)
+
+// Launch app to listen to specified port
+app.listen(port, function () {
+    console.log("ToDoList RESTful API server started on port " + port);
+});
+
+
+/*
+//middleware added to check if user enters not found route 
+app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
-  });
-
-app.listen(port);
-
-
-
-
-console.log(`todo list RESTful API server started on : ${port}`);
+});
+*/
