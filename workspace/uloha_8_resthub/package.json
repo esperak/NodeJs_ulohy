@@ -1,0 +1,21 @@
+{
+  "name": "resthub",
+  "version": "1.0.0",
+  "description": "App-ka demonstrujuca REST API implementaciu pomocou NodeJs, ExpressJs a MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "restful",
+    "json"
+  ],
+  "author": "Matej Kellner",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.9"
+  }
+}

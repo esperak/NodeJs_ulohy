@@ -1,7 +1,8 @@
 const https = require('https');
 
+var address = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY';
 
-https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (resp) => {
+https.get(address, (resp) => {
 
   let data = '';
 

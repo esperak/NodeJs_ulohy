@@ -1,9 +1,10 @@
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/mydb";
+//var url = "mongodb://localhost:27017/mydb";
+var url = "mongodb://localhost:27017/resttodolistdb";
 
 
-/*
+
 // vytvorenie DB 
 
 MongoClient.connect(url, function(err, db) {
@@ -12,6 +13,7 @@ MongoClient.connect(url, function(err, db) {
   db.close();
 });
 
+/*
 
 // vytvorenie "collection"
 
@@ -87,7 +89,7 @@ MongoClient.connect(url, function(err, db) {
   });
 });
 
-*/
+
 
 
 // SELECT *
@@ -101,3 +103,6 @@ MongoClient.connect(url, function(err, db) {
     db.close();
   });
 });
+
+
+*/
